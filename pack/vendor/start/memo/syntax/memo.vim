@@ -119,4 +119,5 @@ elseif &background == "light"
 
 endif
 " <<<
+
 let b:current_syntax = "memo"

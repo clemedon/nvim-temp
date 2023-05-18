@@ -64,6 +64,7 @@ Plug 'tpope/vim-commentary'             "   COMMENT OUT
 Plug 'airblade/vim-gitgutter'           "   GIT GUTTER
 Plug 'AndrewRadev/linediff.vim'         "   DIFF BUFFER CHUNK
 Plug 'ludovicchabant/vim-gutentags'     "   TAGS MANAGER
+Plug 'junegunn/vim-journal'
 "   SVELTE
 " Plug 'othree/html5.vim'
 " Plug 'pangloss/vim-javascript'
