@@ -1,4 +1,4 @@
-"       GUI
+"   gui
 
 augroup custom_hi
     autocmd!
@@ -21,7 +21,7 @@ endif
 set guicursor=n-v-c-i:block
 set fillchars=stl:\ ,stlnc:\ ,vert:\ ,fold:·,diff:-
 
-"       Ergonomy
+"   ergonomy
 
 set noincsearch                                 "   disable incremental search
 set ignorecase smartcase                        "   ignore case except if uppercase used
@@ -31,7 +31,7 @@ set wildmenu                                    "   displays possible completion
 set spelllang=en                                "   spell lang suggestions
 set spellfile=$DOTVIM/.spell/custom.utf-8.add
 
-"       Indentation
+"   indentation
 
 set autoindent                                  "   auto indent
 set expandtab                                   "   insert spaces instead tab
@@ -40,17 +40,17 @@ set shiftround                                  "   indent to the nearest tab ma
 set shiftwidth=4 tabstop=4                      "   shift and tab width in spaces
 set softtabstop=4                               "   simulate tabs for backspaces too
 
-"       Path
+"   path
 
 set path=$DOTVIM/init                           "   :find path
 set wildignore=.git                             "   wildmenu results to hide
 
-"       Security
+"   security
 
 set nomodeline                                  "   disables modelines
 set secure                                      "   disables shell access
 set backupdir=$DOTVIM/.backup//,/tmp//          "   backup files directory
 set directory=$DOTVIM/.swp//,/tmp//             "   undo files directory
-set undodir=$DOTVIM/.undo/,/tmp//               "   undo files directory
+set undodir=$DOTVIM/.undo//,/tmp//               "   undo files directory
 set undofile                                    "   enable undo
-set viminfo+=n$DOTVIM/.viminfo                  "   viminfo location
+set viminfo+='100,<50,s10,h,n$DOTVIM/.viminfo   "   viminfo location

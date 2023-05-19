@@ -7,8 +7,8 @@
 setl textwidth=80
 setl suffixesadd+=.md
 setl suffixesadd+=.gpg.md
-setl path+=$DOTVIM
-setl path+=$DOTVIM/after/ftplugin/**
+
+setl path+=$DOTVIM/pack/vendor/start/memo/**
 setl path+=$MEMO
 setl path+=$MEMO/Lists/**
 setl path+=$MEMO/Areas/**
