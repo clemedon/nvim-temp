@@ -1,7 +1,7 @@
-autoload
-ftplugin
-ftdetect
-syntax
+autoload: functions to be called
+ftplugin: filetype specific config
+ftdetect: filetype detection rule
+syntax:
 color
-init
-pack/vendor/start
+init: config
+pack/vendor/start: custom plugins

@@ -12,6 +12,7 @@ function! redact_pass#() abort
   set nowritebackup
   set noswapfile
   set viminfo=
+  set shada=
   if has('persistent_undo')
     set noundofile
   endif

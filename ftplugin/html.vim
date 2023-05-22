@@ -1,21 +1,32 @@
-augroup filetype_html
-    autocmd!
-    " --------------------------------- HIGHLIGHTS >>>
-    au FileType html hi MatchParen ctermbg=darkgrey guibg=darkgrey
-    " <<<
-    " --------------------------------- OPTIONS >>>
-    au FileType html setl shiftwidth=2 tabstop=2
-    au FileType html let &l:formatprg="tidy -q -w -i --show-warnings 0 --show-errors 0 --tidy-mark no"
-    au FileType html setl pa+=$DOTVIM/after/ftplugin/
-    " <<<
-    " --------------------------------- PLUGINS >>>
-    "   ALE
-    au FileType html let g:ale_linters = {'html': ['tidy']}
-    " <<<
-    " --------------------------------- MAPPINGS >>>
-    "   CLEANUP
-    au Filetype html nn <buffer> <Space>= Mmmgo=G:silent! :%s/\s\+$//e<CR>`mzz3<C-O>
-    "   FORMAT
-    au Filetype html nn <buffer> gqq mmGgqgo`m
-    " <<<
-augroup END
+" @filename  html.vim
+" @created   230522 18:07:29  by  clem9nt@imac
+" @updated   230522 18:07:29  by  clem9nt@imac
+" @author    Clément Vidon
+
+"   options
+
+
+setlocal shiftwidth=2
+setlocal tabstop=2
+setlocal formatprg="tidy -q -w -i --show-warnings 0 --show-errors 0 --tidy-mark no"
+setlocal path+=$DOTVIM/ftplugin/
+
+let maplocalleader="gh"
+
+
+"   mappings
+
+
+nn <silent><buffer> <LocalLeader> <nop>
+
+"   clear
+nn <silent><buffer> <LocalLeader>= Mmmgo=G:silent! :%s/\s\+$//e<CR>`mzz3<C-O>
+
+"   format
+nn <silent><buffer> <LocalLeader>f mmGgqgo`m
+
+
+"   colors
+
+
+highlight MatchParen ctermbg=darkgrey guibg=darkgrey

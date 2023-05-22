@@ -20,15 +20,6 @@ let maplocalleader = "gh"
 " setl formatoptions+=ro
 " setl comments+=s:[],m:[],e:[]
 
-au BufReadPre,FileReadPre *.gpg.* setl viminfo=""
-au BufReadPre,FileReadPre *.gpg.* setl noswapfile noundofile nobackup
-au BufReadPost,FileReadPost *.gpg.* if getline('1') == '-----BEGIN PGP MESSAGE-----' |
-            \ exec 'silent %!gpg --decrypt 2>/dev/null' | setl title titlestring='ENCRYPTED' |
-            \ endif
-au BufWritePre,FileWritePre *.gpg.* let g:view = winsaveview() | keeppatterns %s/\s\+$//e |
-            \ exec 'silent %!gpg --default-recipient $GPG_KEY --armor --encrypt 2>/dev/null'
-au BufWritePost,FileWritePost *.gpg.* exec "normal! u" |
-            \ call winrestview(g:view) | setl title!
 
 " <<<
 " --------------------------------- MAPPINGS >>>

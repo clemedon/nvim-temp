@@ -1,20 +1,25 @@
-augroup filetype_tidal
-    autocmd!
-    " --------------------------------- HIGHLIGHTS >>>
-    " <<<
-    " --------------------------------- OPTIONS >>>
-    au Filetype tidal let maplocalleader="\\"
-    au Filetype tidal let g:tidal_no_mappings = 1
-    au FileType tidal setl pa+=$DOTVIM/after/ftplugin/
-    " <<<
-    " --------------------------------- PLUGINS >>>
-    " <<<
-    " --------------------------------- MAPPINGS >>>
-    au Filetype tidal nm <buffer> <Space>c <Plug>TidalConfig
-    au Filetype tidal xm <buffer> <Space>e <Plug>TidalRegionSend
-    au Filetype tidal nm <buffer> <Space>e <Plug>TidalParagraphSend
-    au Filetype tidal nm <buffer> <Space>s <Plug>TidalLineSend
-    au Filetype tidal nn <buffer> <Space>h :TidalHush<cr>
-    " <<<
-augroup END
+" @filename  tidal.vim
+" @created   230522 19:58:24  by  clem9nt@imac
+" @updated   230522 19:58:24  by  clem9nt@imac
+" @author    Clément Vidon
 
+"   options
+
+
+setlocal path+=$DOTVIM/ftplugin/
+
+let g:tidal_no_mappings=1
+
+let maplocalleader="gh"
+
+
+"   mappings
+
+
+nn <silent><buffer> <LocalLeader> <nop>
+
+nm <silent><buffer> <LocalLeader>c <Plug>TidalConfig
+xm <silent><buffer> <LocalLeader>e <Plug>TidalRegionSend
+nm <silent><buffer> <LocalLeader>e <Plug>TidalParagraphSend
+nm <silent><buffer> <LocalLeader>s <Plug>TidalLineSend
+nn <silent><buffer> <LocalLeader>h :TidalHush<cr>

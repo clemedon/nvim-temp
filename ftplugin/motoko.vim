@@ -1,42 +1,39 @@
-augroup filetype_motoko
-    autocmd!
-    " --------------------------------- OPTIONS >>>
+" @filename  motoko.vim
+" @created   230522 18:23:04  by  clem9nt@imac
+" @updated   230522 18:23:04  by  clem9nt@imac
+" @author    Clément Vidon
 
-    " .......................... BUILTIN
+"   options
 
-    au FileType motoko,mo,gdmo set filetype=motoko
-    au FileType motoko set syntax=go
-    au FileType motoko setl expandtab tabstop=2 shiftwidth=2 textwidth=80
-    au FileType motoko setl softtabstop=2 autoindent cindent
-    au FileType motoko setl ls=2
-    au FileType motoko let &makeprg = "make --no-print-directory --jobs -C " . fnamemodify(findfile('Makefile', '.;'), ":h") . " $*"
-    au FileType motoko setl formatprg=mo-fmt\ %
-    au FileType motoko let maplocalleader = "gh"
 
-    " .......................... PLUGIN
+" TODO ftdetect?-> au FileType motoko,mo,gdmo set filetype=motoko
+set syntax=go
+setlocal autoindent
+setlocal cindent
+setlocal expandtab
+setlocal formatprg="mo-fmt %"
+setlocal laststatus=2
+setlocal makeprg="make --no-print-directory --jobs -C " . fnamemodify(findfile('Makefile', '.;'), ":h") . " $*"
+setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal tabstop=2
+setlocal textwidth=80
 
-    au FileType motoko let g:gutentags_enabled = 1
-    au FileType motoko let b:surround_45 = '("\r");'
+let maplocalleader = "gh"
 
-    " <<<
+let b:surround_45 = '("\r");'
 
-    " --------------------------------- MAPPINGS >>>
 
-    " .......................... PRIMARY (GH?)
+"   mappings
 
-    au Filetype motoko nn <silent><buffer> <LocalLeader> <nop>
 
-    " ............... MAKE
+nn <silent><buffer> <LocalLeader> <nop>
 
-    "   make
-    au Filetype motoko nn <silent><buffer> mm :w<CR>
-                \:silent !clear<CR>
-                \:make!<CR>
+"   make
+nn <silent><buffer> mm :w<CR>
+            \:!clear<CR>
+            \:make!<CR>
+            \:cwindow<CR>
 
-    " ............... CLEAN CODE
-
-    "   Format
-    au Filetype motoko nn <silent><buffer> <LocalLeader>f :w<CR>:!mo-fmt %<CR>
-
-    " <<<
-augroup END
+"   format
+nn <silent><buffer> <LocalLeader>f :w<CR>:!mo-fmt %<CR>

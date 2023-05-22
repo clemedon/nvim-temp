@@ -1,13 +1,10 @@
-augroup filetype_yml
-    autocmd!
-    " --------------------------------- HIGHLIGHTS >>>
-    " <<<
-    " --------------------------------- OPTIONS >>>
-    au FileType yml let &l:formatprg="prettier --stdin-filepath %"
-    au FileType yml setl pa+=$DOTVIM/after/ftplugin/
-    " <<<
-    " --------------------------------- PLUGINS >>>
-    " <<<
-    " --------------------------------- MAPPINGS >>>
-    " <<<
-augroup END
+" @filename  yml.vim
+" @created   230522 20:03:22  by  clem9nt@imac
+" @updated   230522 20:03:22  by  clem9nt@imac
+" @author    Clément Vidon
+
+"   options
+
+
+setlocal formatprg="prettier --stdin-filepath %"
+setlocal path+=$DOTVIM/ftplugin/

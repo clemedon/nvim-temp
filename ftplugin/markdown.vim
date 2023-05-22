@@ -1,14 +1,10 @@
-augroup filetype_markdown
-    autocmd!
-    " --------------------------------- HIGHLIGHTS >>>
-    " <<<
-    " --------------------------------- OPTIONS >>>
-    au FileType markdown let &l:formatprg="prettier --stdin-filepath %"
-    au FileType markdown setl pa+=$DOTVIM/after/ftplugin/
-    " <<<
-    " --------------------------------- PLUGINS >>>
-    " <<<
-    " --------------------------------- MAPPINGS >>>
-    " <<<
-augroup END
+" @filename  markdown.vim
+" @created   230522 18:22:27  by  clem9nt@imac
+" @updated   230522 18:22:27  by  clem9nt@imac
+" @author    Clément Vidon
 
+"   options
+
+
+setlocal formatprg="prettier --stdin-filepath %"
+setlocal path+=$DOTVIM/ftplugin/

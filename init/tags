@@ -1,0 +1,80 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+"+P	mappings.vim	/^no "+P :-1r!xclip -o -sel clip<CR>$/;"	m
+"+Y	mappings.vim	/^no "+Y V:!xclip -f -sel clip<CR>$/;"	m
+"+p	mappings.vim	/^no "+p :r!xclip -o -sel clip<CR>$/;"	m
+<Space>w	mappings.vim	/^no <Space>w <C-W>$/;"	m
+<Space>wE	mappings.vim	/^no <Space>wE :exec 'vertical resize '. string(&columns * 0.33)<CR>$/;"	m
+<Space>wM	mappings.vim	/^no <Space>wM <C-W>_\\|<C-W><BAR>$/;"	m
+<Space>wX	mappings.vim	/^no <Space>wX <C-W>x\\|<C-W>_\\|<C-W><BAR>$/;"	m
+<Space>we	mappings.vim	/^no <Space>we :exec 'vertical resize '. string(&columns * 0.66)<CR>$/;"	m
+BufOnly	commands.vim	/^command! BufOnly execute '%bdelete | edit # | normal `"'$/;"	c
+En	commands.vim	/^command! -nargs=+ -bar En execute ' read! trans "<args>" -from fr -to en -brief 2> \/dev\/null'$/;"	c
+Enp	commands.vim	/^command! -nargs=+ -bar Enp execute '! clear; trans "<args>" -from fr -to en -brief 2> \/dev\/null -play'$/;"	c
+Fr	commands.vim	/^command! -nargs=+ -bar Fr execute ' read! trans "<args>" -from en -to fr -brief 2> \/dev\/null'$/;"	c
+P	mappings.vim	/^vno P pgvy$/;"	m
+S0	commands.vim	/^command! -nargs=+ -bar S0 execute 'silent ! tmux send-keys -t 0 "<args>" Enter' | redraw!$/;"	c
+S1	commands.vim	/^command! -nargs=+ -bar S1 execute 'silent ! tmux send-keys -t 1 "<args>" Enter' | redraw!$/;"	c
+Sl	commands.vim	/^command! -nargs=+ -bar Sl execute 'silent ! tmux send-keys -t left "<args>" Enter' | redraw!$/;"	c
+Sr	commands.vim	/^command! -nargs=+ -bar Sr execute 'silent ! tmux send-keys -t right "<args>" Enter' | redraw!$/;"	c
+StaticSearch	commands.vim	/^command! -nargs=+ -bar StaticSearch execute ":let @\/=expand('<args>')" | set hlsearch | redraw!$/;"	c
+Sy	commands.vim	/^command! -nargs=+ -bar Sy execute '! clear; synonym "<args>"'$/;"	c
+W	commands.vim	/^command! W :execute ':silent w !sudo tee %>\/dev\/null' | :edit!$/;"	c
+X	mappings.vim	/^no X :echo "!X"<CR>$/;"	m
+ah	mappings.vim	/^om ah <Plug>(GitGutterTextObjectOuterPending)$/;"	m
+changeQfCmdDirectory	options.vim	/^augroup changeQfCmdDirectory                        " quickfix cd$/;"	a
+custom_highlight	options.vim	/^augroup custom_highlight$/;"	a
+g3	mappings.vim	/^no g3 #N$/;"	m
+g8	mappings.vim	/^no g8 *N$/;"	m
+g:dracula_italic	plugins.vim	/^let g:dracula_italic = 0$/;"	v
+g:gitgutter_enabled	plugins.vim	/^let g:gitgutter_enabled = 0$/;"	v
+g:gitgutter_git_executable	plugins.vim	/^let g:gitgutter_git_executable = '\/usr\/bin\/git'$/;"	v
+g:gitgutter_grep	plugins.vim	/^    let g:gitgutter_grep = 'ag'$/;"	v
+g:gitgutter_map_keys	plugins.vim	/^let g:gitgutter_map_keys = 0$/;"	v
+g:gitgutter_max_signs	plugins.vim	/^let g:gitgutter_max_signs = 500  " default value 500$/;"	v
+g:gitgutter_sign_allow_clobber	plugins.vim	/^let g:gitgutter_sign_allow_clobber = 0$/;"	v
+g:goyo_height	plugins.vim	/^let g:goyo_height = '100%'$/;"	v
+g:goyo_width	plugins.vim	/^let g:goyo_width = 90$/;"	v
+g:gutentags_add_default_project_roots	plugins.vim	/^let g:gutentags_add_default_project_roots = 0$/;"	v
+g:gutentags_ctags_exclude	plugins.vim	/^let g:gutentags_ctags_exclude = ['*.svelte', '*.md', 'doc\/**', 'test\/**', '*.h']$/;"	v
+g:gutentags_ctags_exclude_wildignore	plugins.vim	/^let g:gutentags_ctags_exclude_wildignore = 1$/;"	v
+g:gutentags_ctags_executable	plugins.vim	/^    let g:gutentags_ctags_executable = '\/usr\/bin\/ctags'$/;"	v
+g:gutentags_enabled	plugins.vim	/^let g:gutentags_enabled = 0$/;"	v
+g:gutentags_project_root	plugins.vim	/^let g:gutentags_project_root = ['.project_root', 'Makefile', '.git']$/;"	v
+g:limelight_conceal_ctermfg	plugins.vim	/^let g:limelight_conceal_ctermfg = 'DarkGray'$/;"	v
+g:limelight_default_coefficient	plugins.vim	/^let g:limelight_default_coefficient = 0.5$/;"	v
+g:netrw_banner	plugins.vim	/^let g:netrw_banner = 0$/;"	v
+g:netrw_dirhistmax	plugins.vim	/^let g:netrw_dirhistmax = 0$/;"	v
+g:rainbow_active	plugins.vim	/^let g:rainbow_active = 0$/;"	v
+g:seoul256_background	plugins.vim	/^let g:seoul256_background = 256$/;"	v
+g:user_emmet_install_global	plugins.vim	/^let g:user_emmet_install_global = 0$/;"	v
+g:user_emmet_leader_key	plugins.vim	/^let g:user_emmet_leader_key = ','$/;"	v
+g:user_emmet_mode	plugins.vim	/^let g:user_emmet_mode = 'i'$/;"	v
+gP	mappings.vim	/^no gP P`[$/;"	m
+gp	mappings.vim	/^no gp p`[$/;"	m
+gsQ	mappings.vim	/^no gsQ :quitall!<CR>$/;"	m
+gsW	mappings.vim	/^no gsW :wall!<CR>$/;"	m
+gsq	mappings.vim	/^no gsq :quit!<CR>$/;"	m
+gsw	mappings.vim	/^no gsw :write!<CR>$/;"	m
+gy,	mappings.vim	/^nm gy, <Plug>(GitGutterPrevHunk)$/;"	m
+gy;	mappings.vim	/^nm gy; <Plug>(GitGutterNextHunk)$/;"	m
+gya	mappings.vim	/^nm gya <Plug>(GitGutterStageHunk)$/;"	m
+gyd	mappings.vim	/^nm gyd <Plug>(GitGutterPreviewHunk)$/;"	m
+gyg	mappings.vim	/^no gyg :GitGutterToggle<CR>$/;"	m
+gyu	mappings.vim	/^nm gyu <Plug>(GitGutterUndoHunk)$/;"	m
+ih	mappings.vim	/^om ih <Plug>(GitGutterTextObjectInnerPending)$/;"	m
+mapleader	mappings.vim	/^let mapleader=" "$/;"	v
+s	mappings.vim	/^no s :echo "!s"<CR>$/;"	m
+sQ	mappings.vim	/^no sQ  :quitall<CR>$/;"	m
+sW	mappings.vim	/^no sW  :wall<CR>$/;"	m
+sq	mappings.vim	/^no sq  :quit<CR>$/;"	m
+sw	mappings.vim	/^no sw  :write<CR>$/;"	m
+toggleGpgEncryption	options.vim	/^augroup toggleGpgEncryption                         " toggle gpg encryption on *.gpg.* files$/;"	a
+trailing_spaces	options.vim	/^augroup trailing_spaces$/;"	a
+x	mappings.vim	/^no x :$/;"	m
+x	mappings.vim	/^no x :echo "!x"<CR>$/;"	m
+z,	mappings.vim	/^no z, z.15<C-e>$/;"	m

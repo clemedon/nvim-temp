@@ -1,6 +1,6 @@
-" @filename  c.vim
-" @created   230522 18:00:31  by  clem9nt@imac
-" @updated   230522 18:02:48  by  clem9nt@imac
+" @filename  cpp.vim
+" @created   230522 18:02:54  by  clem9nt@imac
+" @updated   230522 18:02:58  by  clem9nt@imac
 " @author    Clément Vidon
 
 "   options
@@ -89,7 +89,7 @@ nn <silent><buffer> mh :w<CR>
 nn <silent><buffer> <LocalLeader>xx :w\|lcd %:h<CR>
             \
             \:silent !clear; rm -f a.out /tmp/_err<CR>
-            \:silent !clang -Wall -Wextra -Werror -Wno-unused % 2>/tmp/_err<CR>
+            \:silent !c++ -Wall -Wextra -Werror -Wno-unused -std=c++98 % 2>/tmp/_err<CR>
             \:silent cfile /tmp/_err<CR>:silent 5cwindow<CR>
             \:!clear; ./a.out<CR>
 
@@ -97,13 +97,35 @@ nn <silent><buffer> <LocalLeader>xx :w\|lcd %:h<CR>
 nn <silent><buffer> <LocalLeader>xd :w\|lcd %:h<CR>
             \
             \:silent !clear; rm -f a.out /tmp/_err<CR>
-            \:silent !clang
-            \ -Wall -Wextra -Werror
+            \:silent !c++
+            \ -Wall -Wextra -Werror -std=c++98
             \ -Wconversion -Wsign-conversion -pedantic
             \ -fsanitize=address,undefined,integer,nullability,vptr
             \ -fno-optimize-sibling-calls -fno-omit-frame-pointer -Og -D DEV
             \ % 2>/tmp/_err<CR>:silent cfile /tmp/_err<CR>:silent 5cwindow<CR>
             \:!clear; ./a.out<CR>
+
+"   prod compile run + leaks
+if system("uname -s") == "Darwin\n"
+    nn <silent><buffer> <LocalLeader>xl :w\|lcd %:h<CR>
+                \
+                \:silent !clear; rm -f a.out /tmp/_err<CR>
+                \:silent !c++
+                \ -Wall -Wextra -Werror -std=c++98
+                \ -fno-omit-frame-pointer -Og -D DEV
+                \ % 2>/tmp/_err<CR>:silent cfile /tmp/_err<CR>:silent 5cwindow<CR>
+                \:!clear; leaks -q -atExit -- ./a.out<CR>
+elseif system("uname -s") == "Linux\n"
+    nn <silent><buffer> <LocalLeader>xl :w\|lcd %:h<CR>
+                \
+                \:silent !clear; rm -f a.out /tmp/_err<CR>
+                \:silent !c++
+                \ -Wall -Wextra -Werror -std=c++98
+                \ -fno-omit-frame-pointer -Og -D DEV
+                \ % 2>/tmp/_err<CR>:silent cfile /tmp/_err<CR>:silent 5cwindow<CR>
+                \:silent cfile /tmp/_err<CR>:silent 5cwindow<CR>
+                \:!clear; valgrind -q ./a.out<CR>
+endif
 
 "   docstring skeleton
 nn <silent><buffer> <LocalLeader>d mdj
@@ -120,19 +142,32 @@ nn <silent><buffer> <LocalLeader>d mdj
 nn <silent><buffer> <LocalLeader>f :call functions#ClangFormat()<CR>:w<CR>
 
 "   print
-nn <silent><buffer> <LocalLeader>p odprintf (1, "\n");<Esc>==f"a
+nn <silent><buffer> <LocalLeader>p ostd::cout << "" << std::endl;<Esc>==f"a
 
 "   print wrap
-nn <silent><buffer> <LocalLeader>w 0<<V:norm f;Di<Esc>Idprintf(1, "> %%\n", <Esc>A);<Esc>==f%
+nn <silent><buffer> <LocalLeader>w 0<<V:norm f;Di<Esc>Istd::cout << <Esc>A << std::endl;<Esc>==EEW
 
 "   print location
-nn <silent><buffer> <LocalLeader>. odprintf (1, "(%s: %s: l.%d)\n", __FILE__, __func__, __LINE__);<Esc>==f(
+nn <silent><buffer> <LocalLeader>. ostd::cout << "(" << __FILE__ << ": " << __func__  << ": l." << __LINE__ << ")" << std::endl;<Esc>==f(
+
+"   toggle .hpp/.cpp
+nn <silent><buffer> <LocalLeader>s :call cpp#SwitchHppCpp()<CR>
+
+"   class nav TODO
+nn <silent><buffer> gzc  mm:r !ls -1 inc*<CR>V`[J
+            \
+            \V:s/\.hpp /\\\\|/g<CR>f.D0
+            \i\(\/\/.*\\|^ \* .*\)\@<!\(<Esc>A\)<Esc>
+            \dd/<C-r>"<BS><CR>`m
 
 "   functions nav
 nn <silent><buffer> gzf /^\a<CR>
 
-"   functions list
+"   Functions list
 nn <silent><buffer> gzF :keeppatterns g/^\a<CR>
+
+"   coplien class template
+nn <silent><buffer> gzi :call cpp#ClassInitCpp()<CR>
 
 
 "   text objects
@@ -151,6 +186,7 @@ ono <silent><buffer> aF :normal VaF<CR>
 
 "   abbreviations
 
+
 iabbr <silent><buffer> mmain int main( void ) {<CR>return 0;<CR>}<Esc>kO<C-R>=Eatchar('\s')<CR>
 iabbr <silent><buffer> {{ {<CR>}<Esc>O<C-R>=Eatchar('\s')<CR>
 iabbr <silent><buffer> [[ [<CR>]<Esc>O<C-R>=Eatchar('\s')<CR>
@@ -163,21 +199,35 @@ iabbr <silent><buffer> eelseif else if () {<CR>}<Esc>kf)i<C-R>=Eatchar('\s')<CR>
 iabbr <silent><buffer> wwhile while () {<CR>}<Esc>kf)i<C-R>=Eatchar('\s')<CR>
 iabbr <silent><buffer> ffor for () {<CR>}<Esc>kf)i<C-R>=Eatchar('\s')<CR>
 
+iabbr <silent><buffer> sstr std::string
+iabbr <silent><buffer> sstrc std::string const& <C-R>=Eatchar('\s')<CR>
+iabbr <silent><buffer> cin std::cin
+iabbr <silent><buffer> cer std::cerr
+iabbr <silent><buffer> cou std::cout
+iabbr <silent><buffer> cen std::endl
+iabbr <silent><buffer> ccin std::cin >>;<Left>
+iabbr <silent><buffer> ccer std::cerr <<;<Left>
+iabbr <silent><buffer> ccou std::cout <<;<Left>
+iabbr <silent><buffer> ccen std::cout << std::endl;<Esc>^
+iabbr <silent><buffer> pcer std::cerr << "" << std::endl;<Esc>14hi<C-R>=Eatchar('\s')<CR>
+iabbr <silent><buffer> pcou std::cout << "" << std::endl;<Esc>14hi<C-R>=Eatchar('\s')<CR>
+
 
 "   colors
 
 
 if &background == "dark"
     highlight Search ctermbg=NONE ctermfg=105
-    highlight mycDebug ctermfg=158
+    " highlight cCustomClass ctermfg=158
     highlight cString ctermfg=102
+    highlight cppString ctermfg=102
     highlight cTodo ctermfg=84
     highlight cComment ctermfg=103
     highlight link cCommentL cComment
     highlight link cCommentStart cComment
 elseif &background == "light"
     highlight Search ctermbg=229 ctermfg=NONE
-    highlight mycDebug ctermfg=31
+    " highlight cCustomClass ctermfg=31
     highlight cString ctermfg=245
     highlight cTodo ctermfg=205
     highlight cComment ctermfg=103
@@ -201,6 +251,13 @@ highlight link cStorageClass cleared
 highlight link cStructure cleared
 highlight link cType cleared
 highlight link cTypedef cleared
+highlight link cppBoolean cleared
+highlight link cppNumber cleared
+highlight link cppStatement cleared
+highlight link cppStructure cleared
+highlight link cppType cleared
+highlight link cppOperator cleared
+highlight link cppModifier cleared
+highlight link cppExceptions cleared
 
-syntax match mycDebug "printf\|dprintf" contains=cString,cComment,cCommentL
-
+syntax match cCustomClass "\v\w@<!(\u+[a-zA-Z0-9])[a-z0-9]*\w@!" contains=cIncluded,cInclude
